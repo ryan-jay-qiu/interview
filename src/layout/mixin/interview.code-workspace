@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../front-open/vue-element-admin-master/src/layout"
+		}
+	],
+  "settings": {}
+}
