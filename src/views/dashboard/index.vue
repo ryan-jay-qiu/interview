@@ -8,7 +8,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 50px - 73px);
+  height: calc(100vh - 50px - 72px);
 }
 .list1 {
   padding-top: 30px;

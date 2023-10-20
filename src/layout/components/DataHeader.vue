@@ -106,6 +106,9 @@ export default {
     text-decoration: none;
   }
 }
+.el-menu.el-menu--horizontal {
+  border-bottom: none !important;
+}
 .nest-menu .el-menu-item {
   &.is-active,
   &:hover,

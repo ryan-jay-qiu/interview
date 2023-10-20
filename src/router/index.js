@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: "/Dashboard",
+    redirect: "/first",
   },
 
   {
@@ -20,7 +20,7 @@ const routes = [
     children: [
       {
         path: "first_1",
-        component: () => import("@/views/dashboard/index"),
+        component: () => import("@/views/first_1/index"),
         name: "first_1",
         meta: { title: "菜单一_1" },
       },
