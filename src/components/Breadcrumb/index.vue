@@ -91,6 +91,9 @@ export default {
     color: #97a8be;
     cursor: text;
   }
+  /deep/ .el-breadcrumb__inner a {
+  color:rgb(154,180,238);
+  }
 }
 /* breadcrumb transition */
 .breadcrumb-enter-active {

@@ -49,7 +49,7 @@ const routes = [
     children: [
       {
         path: "third_1",
-        component: () => import("@/views/dashboard/index"),
+        component: () => import("@/views/canvasDemo/index"),
         name: "third_1",
         meta: { title: "菜单三_1" },
       },
@@ -67,7 +67,7 @@ const routes = [
     redirect: "/four/four_1",
     name: "four",
     meta: {
-      title: "菜单一",
+      title: "菜单四",
     },
     children: [
       {
@@ -113,7 +113,7 @@ const routes = [
     redirect: "/six/first_1",
     name: "six",
     meta: {
-      title: "菜单一",
+      title: "菜单六",
     },
     children: [
       {
