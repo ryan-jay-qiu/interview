@@ -79,7 +79,7 @@
       :before-close="() => (dialogNodeVisible = false)"
       title="编辑节点"
     >
-      <el-form label-width="100px" :model="nodeData">
+      <el-form :model="nodeData">
         <el-form-item label="节点大小">
           <el-input placeholder="请输入内容" v-model="nodeData.size"></el-input>
         </el-form-item>
@@ -95,7 +95,6 @@
 </template>
 <script>
 import Vue from "vue";
-
 import VCA from "@vue/composition-api";
 import G6Editor from "@antv/g6-editor";
 import JsonEditorVue from "json-editor-vue";
@@ -404,7 +403,7 @@ export default {
 }
 .left,
 .right {
-  height: 800px;
+  height: 600px;
   border: 1px solid rgb(105, 154, 197);
   padding: 10px;
   user-select: none;

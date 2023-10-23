@@ -59,6 +59,7 @@ export default {
   }
   .el-menu-item.is-active,
   .el-submenu__title:focus,
+  .el-menu-item:hover,
   .el-submenu__title:hover {
     background-color: transparent !important;
     border-bottom: none !important;
@@ -75,7 +76,7 @@ export default {
     color: #eee !important;
     border-bottom: none !important;
   }
-  .el-menu-item.submenu-title-noDropdown,
+  .el-menu-item,
   .el-submenu {
     margin-left: -25px;
   }
@@ -91,11 +92,6 @@ export default {
     background: url("@/assets/menu-bg2.png") no-repeat;
     background-size: contain;
   }
-  // .el-menu--horizontal > .el-menu-item:hover {
-  //   background-color: transparent !important;
-  //   background: url("@/assets/menu-bg1.png") no-repeat;
-  //   background-size: contain;
-  // }
 }
 .el-menu--popup,
 .nest-menu .el-menu-item {

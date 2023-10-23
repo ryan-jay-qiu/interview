@@ -2,10 +2,7 @@
   <div v-if="!item.hidden">
     <template v-if="!item.children && !item.alwaysShow">
       <router-link v-if="item.meta" :to="resolvePath(item.path)">
-        <el-menu-item
-          :index="resolvePath(item.path)"
-          :class="{ 'submenu-title-noDropdown': !isNest }"
-        >
+        <el-menu-item :index="resolvePath(item.path)">
           {{ item.meta.title }}
         </el-menu-item>
       </router-link>

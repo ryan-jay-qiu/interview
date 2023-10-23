@@ -1,10 +1,10 @@
 <template>
   <el-dialog v-bind="$attrs" v-on="$listeners" class="dialog" width="30%">
     <div class="title" slot="title">
-      <span>{{title}}</span>
+      <span>{{ title }}</span>
     </div>
     <slot></slot>
-    <div v-if='footer' class="footer" @click="handlerSubmit" slot="footer">
+    <div v-if="footer" class="footer" @click="handlerSubmit" slot="footer">
       <span>提</span>
       <span>交</span>
     </div>
@@ -15,23 +15,23 @@ export default {
   props: {
     title: {
       type: String,
-      default: "弹窗"
+      default: "弹窗",
     },
     footer: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
-      dialogVisible: true
+      dialogVisible: true,
     };
   },
   methods: {
     handlerSubmit() {
       this.$emit("handlerSubmit");
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -46,12 +46,7 @@ export default {
   span {
     font-size: 18px;
     font-weight: 550;
-    background: linear-gradient(
-      to top,
-      rgb(1, 26, 61) 0%,
-      #fff 50%,
-      #fff
-    ); /* 定义渐变背景 */
+    background: linear-gradient(to top, rgb(1, 26, 61) 0%, #fff 50%, #fff); /* 定义渐变背景 */
     -webkit-background-clip: text; /* 兼容 Webkit 浏览器 */
     background-clip: text; /* 将渐变应用于文本 */
     -webkit-background-clip: text; /* 将渐变应用于文本 */
@@ -83,6 +78,10 @@ export default {
   }
   /deep/ .el-form-item__label {
     color: rgb(1, 134, 187);
+    width: 100px !important;
+  }
+  /deep/ .el-form-item__content {
+    margin-left: 100px !important;
   }
   /deep/ .el-input__inner,
   .upload {
