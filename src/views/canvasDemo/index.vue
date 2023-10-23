@@ -32,7 +32,7 @@
               :data-label="item.text"
             >
               <div class="top"></div>
-              <div class="text">{{item.text}}</div>
+              <div class="text">{{ item.text }}</div>
             </div>
           </div>
         </div>
@@ -53,7 +53,6 @@
           </div>
           <div data-status="canvas-selected" class="menu">
             <el-button data-command="undo" class="command">撤销</el-button>
-            <el-button data-command="redo" class="command disable">重做</el-button>
           </div>
         </div>
       </section>
@@ -77,7 +76,7 @@
     <myDialog
       @handlerSubmit="handlerSubmit"
       :visible.sync="dialogNodeVisible"
-      :before-close="() => dialogNodeVisible = false"
+      :before-close="() => (dialogNodeVisible = false)"
       title="编辑节点"
     >
       <el-form label-width="100px" :model="nodeData">
@@ -102,8 +101,6 @@ import G6Editor from "@antv/g6-editor";
 import JsonEditorVue from "json-editor-vue";
 import myDialog from "@/components/myDialog";
 Vue.use(VCA);
-// import mixin from './mixin'
-// import { construct } from 'netflix-conductor-json-tree/dist/index'
 export default {
   name: "VueG6Editor",
   components: { JsonEditorVue, myDialog },
@@ -114,44 +111,45 @@ export default {
       dialogNodeVisible: false,
       dataSourceNode: "",
       nodeData: {},
-      data: JSON.parse( localStorage.getItem("node")) || [
+      data: JSON.parse(localStorage.getItem("node")) || [
         { text: "节点一" },
         { text: "节点二" },
         { text: "节点三" },
         { text: "节点四" },
         { text: "节点五" },
-        { text: "节点六" }
+        { text: "节点六" },
       ],
       nodeAttributeForm: {
         label: "",
         width: "",
-        height: ""
+        height: "",
       },
       // 节点属性表单
       edgeAttributeForm: {
-        label: ""
+        label: "",
       },
       // 画布属性栏表单
       canvasAttributeForm: {
         grid: false,
-        cell: 20
+        cell: 20,
       },
       // 编辑器
-      editor: null
+      editor: null,
     };
   },
   mounted() {
     this.initG6Editor();
   },
   created() {
-    localStorage.setItem('node',
+    localStorage.setItem(
+      "node",
       JSON.stringify([
         { text: "节点一" },
         { text: "节点二" },
         { text: "节点三" },
         { text: "节点四" },
         { text: "节点五" },
-        { text: "节点六" }
+        { text: "节点六" },
       ])
     );
   },
@@ -191,53 +189,53 @@ export default {
           console.log(editor);
         },
         // 快捷键：Ctrl + S
-        shortcutCodes: [["metaKey", "s"], ["ctrlKey", "s"]]
+        shortcutCodes: [["ctrlKey", "s"]],
       });
 
       // 画布
       const flow = new G6Editor.Flow({
         graph: {
-          container: "page"
+          container: "page",
         },
         align: {
           line: {
             // 对齐线颜色
             stroke: "#FA8C16",
             // 对齐线粗细
-            lineWidth: 1
+            lineWidth: 1,
           },
           // 开启全方位对齐
           item: false,
           // 网格对齐
-          grid: true
+          grid: true,
         },
         grid: {
           // 网孔尺寸
-          cell: 0
+          cell: 0,
         },
         shortcut: {
           // 开启自定义命令保存的快捷键
-          save: true
-        }
+          save: true,
+        },
       });
       window.flow = flow;
 
       // 设置边
       flow.getGraph().edge({
-        shape: "flow-polyline"
+        shape: "flow-polyline",
       });
 
       // 元素面板栏
       const itempannel = new G6Editor.Itempannel({
-        container: "itempannel"
+        container: "itempannel",
       });
       // 工具栏
       const toolbar = new G6Editor.Toolbar({
-        container: "toolbar"
+        container: "toolbar",
       });
       // 右键菜单
       const contextmenu = new G6Editor.Contextmenu({
-        container: "contextmenu"
+        container: "contextmenu",
       });
       // 挂载以上组件到Editor
       editor.add(flow);
@@ -250,26 +248,7 @@ export default {
       editor.getCurrentPage().hideGrid();
       // 获取当前画布
       const currentPage = editor.getCurrentPage();
-      currentPage.on("afterchange", e => {
-        if (e.action === "add") {
-          if (
-            e.model.nodetype === "startNode" ||
-            e.model.nodetype === "endNode"
-          ) {
-            const nodes = this.editor.getCurrentPage().getNodes();
-            for (const item of nodes) {
-              if (
-                item.model.nodetype === e.model.nodetype &&
-                item.model.id !== e.model.id
-              ) {
-                this.editor.getCurrentPage().remove(e.item);
-                this.$message.warning("只能有一个开始节点或结束节点");
-              }
-            }
-          }
-        }
-      });
-      currentPage.on("node:click", function(evt) {
+      currentPage.on("node:click", function (evt) {
         // 获取当前节点数据信息
         console.log(evt);
       });
@@ -281,7 +260,7 @@ export default {
         this.nodeData = { ...evt.item.model };
         console.log("双击事件");
       });
-      currentPage.on("node:contextmenu", function(evt) {
+      currentPage.on("node:contextmenu", function (evt) {
         // 右键事件
         console.log(evt);
       });
@@ -293,18 +272,14 @@ export default {
         // 如果选择的对象是节点
         if (ev.item.isNode) {
           this.nodeAttributeForm.label = selectedItemDataModel.label;
-          this.nodeAttributeForm.width = selectedItemDataModel.size.split(
-            "*"
-          )[0];
-          this.nodeAttributeForm.height = selectedItemDataModel.size.split(
-            "*"
-          )[1];
+          this.nodeAttributeForm.width = selectedItemDataModel.size.split("*")[0];
+          this.nodeAttributeForm.height = selectedItemDataModel.size.split("*")[1];
           this.nodeAttributeForm.color = selectedItemDataModel.color;
         }
         // 如果选择的对象是边
         if (ev.item.isEdge) {
           ev.item.graph.edge({
-            shape: "flow-polyline-round"
+            shape: "flow-polyline-round",
           });
           this.edgeAttributeForm.label = selectedItemDataModel.label;
           this.edgeAttributeForm.shape = selectedItemDataModel.shape;
@@ -390,7 +365,7 @@ export default {
         page.update(selectedItem.id, {
           label: this.selectedItem.label,
           size: this.selectedItem.width + "*" + this.selectedItem.height,
-          color: this.selectedItem.color
+          color: this.selectedItem.color,
         });
       });
     },
@@ -404,7 +379,7 @@ export default {
         console.log(this.edgeAttributeForm);
         page.update(selectedItem.id, {
           label: this.edgeAttributeForm.label,
-          shape: this.edgeAttributeForm.shape
+          shape: this.edgeAttributeForm.shape,
         });
       });
     },
@@ -415,14 +390,14 @@ export default {
       page.update(this.nodeData.id, {
         label: this.nodeData.label,
         size: this.nodeData.size,
-        color: this.nodeData.color
+        color: this.nodeData.color,
       });
     },
-    handleClose() {}
-  }
+    handleClose() {},
+  },
 };
 </script>
-<style lang='less' scoped>
+<style lang="less" scoped>
 #canvas {
   width: 100%;
   height: 100%;
@@ -479,6 +454,7 @@ export default {
     line-height: 50px;
     text-align: center;
     color: #dcdfe6;
+    cursor: pointer;
   }
 }
 #contextmenu {
@@ -499,7 +475,7 @@ export default {
 
 .jse-theme-dark {
   --jse-theme: dark;
-
+  padding-bottom: 20px;
   /* over all fonts, sizes, and colors */
   --jse-theme-color: #2f6dd0;
   --jse-theme-color-highlight: #467cd2;
@@ -612,4 +588,3 @@ export default {
   --jse-color-picker-border-box-shadow: #8c8c8c 0 0 0 1px;
 }
 </style>
-
